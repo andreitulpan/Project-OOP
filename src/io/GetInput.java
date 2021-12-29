@@ -44,8 +44,8 @@ public final class GetInput {
                 Child child = new Child(Integer.valueOf(String.valueOf(childrenObj.get("id"))),
                         (String) childrenObj.get("lastName"),
                         (String) childrenObj.get("firstName"),
-                        Integer.valueOf(String.valueOf(childrenObj.get("age"))),
                         (String) childrenObj.get("city"),
+                        Integer.valueOf(String.valueOf(childrenObj.get("age"))),
                         Double.valueOf(String.valueOf(childrenObj.get("niceScore"))),
                         giftsPreferences);
                 solver.getChildren().add(child);
@@ -67,10 +67,14 @@ public final class GetInput {
                 JSONObject annualChangesObj = (JSONObject)object;
 
                 // NEWGIFTS
-                ArrayList<String> newGifts = new ArrayList<>();
+                ArrayList<Gift> newGifts = new ArrayList<>();
                 JSONArray newGiftsList = (JSONArray) annualChangesObj.get("newGifts");
-                for (Object newGift: newGiftsList) {
-                    newGifts.add(String.valueOf(newGift));
+                for (Object newGiftObj: newGiftsList) {
+                    JSONObject newSantaGift = (JSONObject) newGiftObj;
+                    Gift newGift = new Gift((String) newSantaGift.get("productName"),
+                            Double.valueOf(String.valueOf(newSantaGift.get("price"))),
+                            (String) newSantaGift.get("category"));
+                    newGifts.add(newGift);
                 }
 
                 // NEWCHILDREN
@@ -86,8 +90,8 @@ public final class GetInput {
                     Child newChildToAdd = new Child(Integer.valueOf(String.valueOf(newChildObj.get("id"))),
                             (String) newChildObj.get("lastName"),
                             (String) newChildObj.get("firstName"),
-                            Integer.valueOf(String.valueOf(newChildObj.get("age"))),
                             (String) newChildObj.get("city"),
+                            Integer.valueOf(String.valueOf(newChildObj.get("age"))),
                             Double.valueOf(String.valueOf(newChildObj.get("niceScore"))),
                             newGiftsPreferences);
                     newChildren.add(newChildToAdd);

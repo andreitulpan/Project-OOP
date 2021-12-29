@@ -3,7 +3,7 @@ package solver;
 import entities.AnnualChanges;
 import entities.Child;
 import entities.Gift;
-import io.GetInput;
+import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,13 @@ public class Solver {
         this.children = new ArrayList<>();
         this.gifts = new ArrayList<>();
         this.annualChanges = new ArrayList<>();
+    }
+
+    public void Solve(JSONArray outputArray) {
+        FirstYear.Solver(this, outputArray);
+//        for (int i = 0; i < numberOfYears; i++) {
+//            AnotherYear.Solver(this, i, outputArray);
+//        }
     }
 
     public Integer getNumberOfYears() {

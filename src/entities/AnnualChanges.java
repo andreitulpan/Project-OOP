@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class AnnualChanges {
     private Double newSantaBudget;
-    private ArrayList<String> newGifts;
+    private ArrayList<Gift> newGifts;
     private ArrayList<Child> newChildren;
     private ArrayList<ChildrenUpdates> childrenUpdates;
 
-    public AnnualChanges(Double newSantaBudget, ArrayList<String> newGifts, ArrayList<Child> newChildren, ArrayList<ChildrenUpdates> childrenUpdates) {
+    public AnnualChanges(Double newSantaBudget, ArrayList<Gift> newGifts, ArrayList<Child> newChildren, ArrayList<ChildrenUpdates> childrenUpdates) {
         this.newSantaBudget = newSantaBudget;
         this.newGifts = newGifts;
         this.newChildren = newChildren;
@@ -23,11 +23,11 @@ public class AnnualChanges {
         this.newSantaBudget = newSantaBudget;
     }
 
-    public ArrayList<String> getNewGifts() {
+    public ArrayList<Gift> getNewGifts() {
         return newGifts;
     }
 
-    public void setNewGifts(ArrayList<String> newGifts) {
+    public void setNewGifts(ArrayList<Gift> newGifts) {
         this.newGifts = newGifts;
     }
 

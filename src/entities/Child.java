@@ -1,26 +1,32 @@
 package entities;
 
-import enums.Category;
-
 import java.util.ArrayList;
 
 public class Child {
     private final Integer id;
     private String lastName;
     private String firstName;
-    private Integer age;
     private String city;
+    private Integer age;
     private Double niceScore;
-    private ArrayList<String> giftsPreference;
+    private ArrayList<String> giftsPreferences;
+    private Double averageScore;
+    private ArrayList<Double> niceScoreHistory;
+    private Double assignedBudget;
+    private ArrayList<Gift> receivedGifts;
 
-    public Child(Integer id, String lastName, String firstName, Integer age, String city, Double niceScore, ArrayList<String> giftsPreference) {
+    public Child(Integer id, String lastName, String firstName, String city, Integer age, Double niceScore, ArrayList<String> giftsPreferences) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.age = age;
         this.city = city;
+        this.age = age;
         this.niceScore = niceScore;
-        this.giftsPreference = giftsPreference;
+        this.giftsPreferences = giftsPreferences;
+        this.averageScore = (double) 0;
+        this.niceScoreHistory = new ArrayList<>();
+        this.assignedBudget = (double) 0;
+        this.receivedGifts = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -43,20 +49,20 @@ public class Child {
         this.firstName = firstName;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public Double getNiceScore() {
@@ -67,12 +73,44 @@ public class Child {
         this.niceScore = niceScore;
     }
 
-    public ArrayList<String> getGiftsPreference() {
-        return giftsPreference;
+    public ArrayList<String> getGiftsPreferences() {
+        return giftsPreferences;
     }
 
-    public void setGiftsPreference(ArrayList<String> giftsPreference) {
-        this.giftsPreference = giftsPreference;
+    public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
+        this.giftsPreferences = giftsPreferences;
+    }
+
+    public Double getAverageScore() {
+        return averageScore;
+    }
+
+    public void setAverageScore(Double averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    public ArrayList<Double> getNiceScoreHistory() {
+        return niceScoreHistory;
+    }
+
+    public void setNiceScoreHistory(ArrayList<Double> niceScoreHistory) {
+        this.niceScoreHistory = niceScoreHistory;
+    }
+
+    public Double getAssignedBudget() {
+        return assignedBudget;
+    }
+
+    public void setAssignedBudget(Double assignedBudget) {
+        this.assignedBudget = assignedBudget;
+    }
+
+    public ArrayList<Gift> getReceivedGifts() {
+        return receivedGifts;
+    }
+
+    public void setReceivedGifts(ArrayList<Gift> receivedGifts) {
+        this.receivedGifts = receivedGifts;
     }
 
     @Override
@@ -81,10 +119,14 @@ public class Child {
                 "id=" + id +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", age=" + age +
                 ", city='" + city + '\'' +
+                ", age=" + age +
                 ", niceScore=" + niceScore +
-                ", giftsPreference=" + giftsPreference +
+                ", giftsPreferences=" + giftsPreferences +
+                ", averageScore=" + averageScore +
+                ", niceScoreHistory=" + niceScoreHistory +
+                ", assignedBudget=" + assignedBudget +
+                ", receivedGifts=" + receivedGifts +
                 '}';
     }
 }

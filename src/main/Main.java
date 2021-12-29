@@ -1,5 +1,7 @@
 package main;
 
+import io.SetOutput;
+import org.json.simple.JSONArray;
 import solver.Solver;
 import checker.Checker;
 import entities.AnnualChanges;
@@ -24,21 +26,23 @@ public final class Main {
 //        Checker.calculateScore();
         Solver solver = new Solver();
         GetInput.getData(solver, "tests/test1.json");
-
-        // DEBUGGING
-        System.out.println(solver.getNumberOfYears());
-        System.out.println(solver.getSantaBudget());
-
-        for (Child child: solver.getChildren()) {
-            System.out.println(child);
-        }
-
-        for (Gift gift: solver.getGifts()) {
-            System.out.println(gift);
-        }
-
-        for (AnnualChanges annualChange: solver.getAnnualChanges()) {
-            System.out.println(annualChange);
-        }
+        JSONArray outputArray = new JSONArray();
+        solver.Solve(outputArray);
+        SetOutput.SetData(outputArray, "output.json");
+//        // DEBUGGING
+//        System.out.println(solver.getNumberOfYears());
+//        System.out.println(solver.getSantaBudget());
+//
+//        for (Child child: solver.getChildren()) {
+//            System.out.println(child);
+//        }
+//
+//        for (Gift gift: solver.getGifts()) {
+//            System.out.println(gift);
+//        }
+//
+//        for (AnnualChanges annualChange: solver.getAnnualChanges()) {
+//            System.out.println(annualChange);
+//        }
     }
 }
