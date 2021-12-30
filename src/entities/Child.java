@@ -15,18 +15,36 @@ public class Child {
     private Double assignedBudget;
     private ArrayList<Gift> receivedGifts;
 
-    public Child(Integer id, String lastName, String firstName, String city, Integer age, Double niceScore, ArrayList<String> giftsPreferences) {
+    public Child(Integer id, String lastName, String firstName, String city, Integer age, ArrayList<String> giftsPreferences) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.city = city;
         this.age = age;
-        this.niceScore = niceScore;
         this.giftsPreferences = giftsPreferences;
         this.averageScore = (double) 0;
         this.niceScoreHistory = new ArrayList<>();
         this.assignedBudget = (double) 0;
         this.receivedGifts = new ArrayList<>();
+    }
+
+    public Child(Integer id, String lastName, String firstName, String city, Integer age, ArrayList<String> giftsPreferences, Double averageScore, ArrayList<Double> niceScoreHistory, Double assignedBudget, ArrayList<Gift> receivedGifts) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.city = city;
+        this.age = age;
+        this.giftsPreferences = giftsPreferences;
+        this.averageScore = averageScore;
+        this.niceScoreHistory = niceScoreHistory;
+        this.assignedBudget = assignedBudget;
+        this.receivedGifts = receivedGifts;
+    }
+
+    public Child(Child child) {
+        this(child.getId(), child.getLastName(), child.getFirstName(), child.getCity(), child.getAge(),
+                new ArrayList<>(child.getGiftsPreferences()), child.getAverageScore(), new ArrayList<>(child.getNiceScoreHistory()),
+                child.getAssignedBudget(), new ArrayList<>(child.getReceivedGifts()));
     }
 
     public Integer getId() {
@@ -63,14 +81,6 @@ public class Child {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Double getNiceScore() {
-        return niceScore;
-    }
-
-    public void setNiceScore(Double niceScore) {
-        this.niceScore = niceScore;
     }
 
     public ArrayList<String> getGiftsPreferences() {
@@ -121,7 +131,6 @@ public class Child {
                 ", firstName='" + firstName + '\'' +
                 ", city='" + city + '\'' +
                 ", age=" + age +
-                ", niceScore=" + niceScore +
                 ", giftsPreferences=" + giftsPreferences +
                 ", averageScore=" + averageScore +
                 ", niceScoreHistory=" + niceScoreHistory +

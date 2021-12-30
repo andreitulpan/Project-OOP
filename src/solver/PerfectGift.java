@@ -16,7 +16,8 @@ public final class PerfectGift {
 
         // Se sorteaza lista dupa pret
         giftsInCategory.sort(Comparator.comparingDouble(Gift::getPrice));
-
-        return giftsInCategory.get(0);
+        if (!giftsInCategory.isEmpty())
+            return giftsInCategory.get(0);
+        return null;
     }
 }

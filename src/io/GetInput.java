@@ -46,8 +46,9 @@ public final class GetInput {
                         (String) childrenObj.get("firstName"),
                         (String) childrenObj.get("city"),
                         Integer.valueOf(String.valueOf(childrenObj.get("age"))),
-                        Double.valueOf(String.valueOf(childrenObj.get("niceScore"))),
                         giftsPreferences);
+                child.getNiceScoreHistory().add(Double.valueOf(String.valueOf(childrenObj.get("niceScore"))));
+//                System.out.println("Am adaugat niceScore-ul");
                 solver.getChildren().add(child);
             }
 
@@ -92,8 +93,8 @@ public final class GetInput {
                             (String) newChildObj.get("firstName"),
                             (String) newChildObj.get("city"),
                             Integer.valueOf(String.valueOf(newChildObj.get("age"))),
-                            Double.valueOf(String.valueOf(newChildObj.get("niceScore"))),
                             newGiftsPreferences);
+                    newChildToAdd.getNiceScoreHistory().add(Double.valueOf(String.valueOf(newChildObj.get("niceScore"))));
                     newChildren.add(newChildToAdd);
                 }
 
@@ -107,9 +108,9 @@ public final class GetInput {
                     for (Object newGift: giftsList) {
                         newGiftsPreferences.add((String) newGift);
                     }
-                    Double newNiceScore = (double) 0;
-                    if (childrenUpdateObj.get("newNiceScore") != null)
-                        newNiceScore = (Double) childrenUpdateObj.get("newNiceScore");
+                    double newNiceScore = -1;
+                    if (childrenUpdateObj.get("niceScore") != null)
+                        newNiceScore = Double.parseDouble(String.valueOf(childrenUpdateObj.get("niceScore")));
                     ChildrenUpdates childrenUpdateToAdd = new ChildrenUpdates(
                             Integer.valueOf(String.valueOf(childrenUpdateObj.get("id"))),
                             newNiceScore, newGiftsPreferences);

@@ -10,21 +10,22 @@ import java.util.ArrayList;
 public final class FirstYear {
     public static void Solver(Solver solver, JSONArray outputArray) {
         ArrayList<Child> childrenToRemove = new ArrayList<>();
+        JSONArray childrenArray = new JSONArray();
 
         // Salvez suma scorurilor in variabila aceasta
         double scoreSum = 0;
 
         for (Child child: solver.getChildren()) {
             // Adaug niceScore-ul in lista
-            child.getNiceScoreHistory().add(child.getNiceScore());
+//            child.getNiceScoreHistory().add(child.getNiceScore());
 
             // Calculez averageScore-ul pentru fiecare copil
             if (child.getAge() < 5) {
                 child.setAverageScore(10.0);
             } else if (child.getAge() >= 5 && child.getAge() < 12) {
-                child.setAverageScore(child.getNiceScore());
-            } else if (child.getAge() >= 12 && child.getAge() < 18) {
-                child.setAverageScore(child.getNiceScore());
+                child.setAverageScore(child.getNiceScoreHistory().get(0));
+            } else if (child.getAge() >= 12 && child.getAge() <= 18) {
+                child.setAverageScore(child.getNiceScoreHistory().get(0));
             } else {
                 childrenToRemove.add(child);
             }
@@ -47,7 +48,10 @@ public final class FirstYear {
         for (Child child: solver.getChildren()) {
             child.setAssignedBudget(child.getAverageScore() * budgetUnit);
             AssignGifts.Assign(child, solver.getGifts());
-            ChildOutput.SetChild(child, outputArray);
+//            outputArray.add(new Child(child));
+            ChildOutput.SetChild(child, childrenArray);
         }
+
+        ChildOutput.SetData(childrenArray, outputArray);
     }
 }

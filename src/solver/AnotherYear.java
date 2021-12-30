@@ -8,54 +8,71 @@ import io.ChildOutput;
 import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public final class AnotherYear {
     public static void Solver(Solver solver, int year, JSONArray outputArray) {
         ArrayList<Child> childrenToRemove = new ArrayList<>();
+        JSONArray childrenArray = new JSONArray();
 
-        // Ajung la index-ul necesar din lista;
-//        year -= 1;
+        // Se incrementeaza varsta cu 1
+        for (Child child: solver.getChildren())
+            child.setAge(child.getAge() + 1);
 
         // Salvez suma scorurilor in variabila aceasta
         double scoreSum = 0;
 
         // Adaug copiii noi daca au sub 18 ani
         for (Child newChild: solver.getAnnualChanges().get(year).getNewChildren()) {
-            if (newChild.getAge() < 18)
+            if (newChild.getAge() <= 18)
                 solver.getChildren().add(newChild);
         }
 
         for (Child child: solver.getChildren()) {
-            // Se incrementeaza varsta cu 1
-            child.setAge(child.getAge() + 1);
 
-            if (child.getAge() < 18) {
+            // Se reinitializeaza lista de cadouri
+            child.setReceivedGifts(new ArrayList<>());
+
+            if (child.getAge() <= 18) {
                 for (ChildrenUpdates childrenUpdates : solver.getAnnualChanges().get(year).getChildrenUpdates()) {
                     if (childrenUpdates.getId().equals(child.getId())) {
-                        if (childrenUpdates.getNewNiceScore() != null) {
-                            child.setNiceScore(childrenUpdates.getNewNiceScore());
-//                            child.getScoreList().add(child.getNiceScore());
+                        if (childrenUpdates.getNewNiceScore() != -1)
+                            child.getNiceScoreHistory().add(childrenUpdates.getNewNiceScore());
+
+                        ArrayList<String> newGiftsPreferences = new ArrayList<>();
+                        for (String element: childrenUpdates.getNewGiftsPreferences())
+                            if (!newGiftsPreferences.contains(element))
+                                newGiftsPreferences.add(element);
+                        Collections.reverse(newGiftsPreferences);
+
+                        for (String category: newGiftsPreferences) {
+                            child.getGiftsPreferences().remove(category);
+                            child.getGiftsPreferences().add(0, category);
                         }
-                        if (childrenUpdates.getNewGiftsPreferences().size() > 0) {
-                            for (String category : childrenUpdates.getNewGiftsPreferences()) {
-                                child.getGiftsPreferences().remove(category);
-                                child.getGiftsPreferences().add(0, category);
-                            }
-                        }
-                        break;
                     }
                 }
 
                 // Adaug niceScore-ul in lista
-                child.getNiceScoreHistory().add(child.getNiceScore());
+//                child.getNiceScoreHistory().add(child.getNiceScore());
 
                 // Calculez averageScore-ul pentru fiecare copil
                 if (child.getAge() < 5) {
                     child.setAverageScore(10.0);
                 } else if (child.getAge() >= 5 && child.getAge() < 12) {
-                    child.setAverageScore(child.getNiceScore());
+                    double averageScore = 0;
+                    for (double niceScore: child.getNiceScoreHistory())
+                        averageScore += niceScore;
+                    averageScore = averageScore / child.getNiceScoreHistory().size();
+                    child.setAverageScore(averageScore);
                 } else if (child.getAge() >= 12) {
-                    child.setAverageScore(child.getNiceScore());
+                    double averageScore = 0;
+                    int index = 0;
+                    for (double niceScore: child.getNiceScoreHistory()) {
+                        index++;
+                        averageScore += niceScore * index;
+                    }
+                    averageScore = 2 * averageScore / (index * (index + 1));
+                    child.setAverageScore(averageScore);
                 }
 
                 // Calculez suma scorurilor
@@ -82,7 +99,10 @@ public final class AnotherYear {
         for (Child child: solver.getChildren()) {
             child.setAssignedBudget(child.getAverageScore() * budgetUnit);
             AssignGifts.Assign(child, solver.getGifts());
-            ChildOutput.SetChild(child, outputArray);
+//            outputArray.add(child);
+            ChildOutput.SetChild(child, childrenArray);
         }
+
+        ChildOutput.SetData(childrenArray, outputArray);
     }
 }

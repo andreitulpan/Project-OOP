@@ -24,9 +24,9 @@ public class Solver {
 
     public void Solve(JSONArray outputArray) {
         FirstYear.Solver(this, outputArray);
-//        for (int i = 0; i < numberOfYears; i++) {
-//            AnotherYear.Solver(this, i, outputArray);
-//        }
+        for (int i = 0; i < numberOfYears; i++) {
+            AnotherYear.Solver(this, i, outputArray);
+        }
     }
 
     public Integer getNumberOfYears() {
