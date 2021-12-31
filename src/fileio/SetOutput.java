@@ -1,21 +1,22 @@
-package io;
+package fileio;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import entities.Child;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import solver.Solver;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public final class SetOutput {
 
-    public static void SetData(JSONArray outputArray, ObjectWriter writer, String file) {
+    public static void SetData(Solver solver, String file) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         try {
             JSONObject annualChildren = new JSONObject();
-            annualChildren.put("annualChildren", outputArray);
+            annualChildren.put("annualChildren", solver.getOutputArray());
             writer.writeValue(Paths.get(file).toFile(), annualChildren);
 
         } catch (Exception e) {

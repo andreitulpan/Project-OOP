@@ -5,7 +5,11 @@ import entities.Child;
 import entities.Gift;
 import org.json.simple.JSONArray;
 
+import java.time.Year;
 import java.util.ArrayList;
+
+import static common.Constants.ANOTHER_YEAR_STRATEGY;
+import static common.Constants.FIRST_YEAR_STRATEGY;
 
 public class Solver {
     private Integer numberOfYears;
@@ -13,19 +17,32 @@ public class Solver {
     private ArrayList<Child> children;
     private ArrayList<Gift> gifts;
     private ArrayList<AnnualChanges> annualChanges;
+    private static Solver instance;
+    private JSONArray outputArray;
 
-    public Solver() {
+    private Solver() {}
+
+    public static Solver getInstance() {
+        if (instance == null) {
+            instance = new Solver();
+        }
+        return instance;
+    }
+
+    public void initData() {
         this.numberOfYears = 0;
         this.santaBudget = (double) 0;
         this.children = new ArrayList<>();
         this.gifts = new ArrayList<>();
         this.annualChanges = new ArrayList<>();
+        this.outputArray = new JSONArray();
     }
 
-    public void Solve(JSONArray outputArray) {
-        FirstYear.Solver(this, outputArray);
-        for (int i = 0; i < numberOfYears; i++) {
-            AnotherYear.Solver(this, i, outputArray);
+    public void solve() {
+        YearFactory yearFactory = new YearFactory();
+        for (int i = 0; i <= numberOfYears; i++) {
+            YearStrategy yearStrategy = yearFactory.createStrategy(this, i);
+            yearStrategy.solver();
         }
     }
 
@@ -67,6 +84,14 @@ public class Solver {
 
     public void setAnnualChanges(ArrayList<AnnualChanges> annualChanges) {
         this.annualChanges = annualChanges;
+    }
+
+    public JSONArray getOutputArray() {
+        return outputArray;
+    }
+
+    public void setOutputArray(JSONArray outputArray) {
+        this.outputArray = outputArray;
     }
 
     @Override

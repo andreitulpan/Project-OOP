@@ -1,19 +1,27 @@
 package solver;
 
-import entities.AnnualChanges;
 import entities.Child;
 import entities.ChildrenUpdates;
-import entities.Gift;
-import io.ChildOutput;
+import fileio.ChildOutput;
 import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public final class AnotherYear {
-    public static void Solver(Solver solver, int year, JSONArray outputArray) {
+public class AnotherYear implements YearStrategy {
+    private final Solver solver;
+    private int year;
+
+    public AnotherYear(Solver solver, int year) {
+        this.solver = solver;
+        this.year = year;
+    }
+
+    public void solver() {
         ArrayList<Child> childrenToRemove = new ArrayList<>();
         JSONArray childrenArray = new JSONArray();
+
+        year -= 1;
 
         // Se incrementeaza varsta cu 1
         for (Child child: solver.getChildren())
@@ -103,6 +111,6 @@ public final class AnotherYear {
             ChildOutput.SetChild(child, childrenArray);
         }
 
-        ChildOutput.SetData(childrenArray, outputArray);
+        ChildOutput.SetData(childrenArray, solver.getOutputArray());
     }
 }

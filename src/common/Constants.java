@@ -12,6 +12,8 @@ public final class Constants {
     public static final Integer MAXIMUM_ERROR_CHECKSTYLE = 30;
     public static final Integer CHECKSTYLE_POINTS = 10;
     public static final Integer TESTS_NUMBER_SMALL = 15;
+    public static final String FIRST_YEAR_STRATEGY = "first_year_strategy";
+    public static final String ANOTHER_YEAR_STRATEGY = "another_year_strategy";
 
     private Constants() {
         //constructor for checkstyle

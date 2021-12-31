@@ -1,4 +1,4 @@
-package io;
+package fileio;
 
 import solver.Solver;
 import entities.AnnualChanges;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public final class GetInput {
 
     public static void getData(Solver solver, String file) {
+        solver.initData();
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader(file))
         {

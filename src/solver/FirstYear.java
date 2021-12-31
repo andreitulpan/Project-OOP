@@ -1,14 +1,19 @@
 package solver;
 
 import entities.Child;
-import entities.Gift;
-import io.ChildOutput;
+import fileio.ChildOutput;
 import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 
-public final class FirstYear {
-    public static void Solver(Solver solver, JSONArray outputArray) {
+public class FirstYear implements YearStrategy {
+    private final Solver solver;
+
+    public FirstYear(Solver solver, int year) {
+        this.solver = solver;
+    }
+
+    public void solver() {
         ArrayList<Child> childrenToRemove = new ArrayList<>();
         JSONArray childrenArray = new JSONArray();
 
@@ -52,6 +57,6 @@ public final class FirstYear {
             ChildOutput.SetChild(child, childrenArray);
         }
 
-        ChildOutput.SetData(childrenArray, outputArray);
+        ChildOutput.SetData(childrenArray, solver.getOutputArray());
     }
 }
