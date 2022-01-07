@@ -1,15 +1,18 @@
 package solver;
 
-import org.json.simple.JSONArray;
+public final class YearFactory {
 
-import static common.Constants.ANOTHER_YEAR_STRATEGY;
-import static common.Constants.FIRST_YEAR_STRATEGY;
-
-public class YearFactory {
-    public YearStrategy createStrategy(Solver solver, int year) {
-        if (year == 0)
+    /**
+     * Creeaza strategia corespunzatoare anului
+     * @param solver solver-ul
+     * @param year anul in functie de care se alege strategia
+     * @return strategia potrivita
+     */
+    public YearStrategy createStrategy(final Solver solver, final int year) {
+        if (year == 0) {
             return new FirstYear(solver, year);
-        else
+        } else {
             return new AnotherYear(solver, year);
+        }
     }
 }

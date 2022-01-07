@@ -2,20 +2,20 @@ package entities;
 
 import java.util.ArrayList;
 
-public class Child {
+public final class Child {
     private final Integer id;
     private String lastName;
     private String firstName;
     private String city;
     private Integer age;
-    private Double niceScore;
     private ArrayList<String> giftsPreferences;
     private Double averageScore;
     private ArrayList<Double> niceScoreHistory;
     private Double assignedBudget;
     private ArrayList<Gift> receivedGifts;
 
-    public Child(Integer id, String lastName, String firstName, String city, Integer age, ArrayList<String> giftsPreferences) {
+    public Child(final Integer id, final String lastName, final String firstName,
+                 final String city, final Integer age, final ArrayList<String> giftsPreferences) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -28,7 +28,10 @@ public class Child {
         this.receivedGifts = new ArrayList<>();
     }
 
-    public Child(Integer id, String lastName, String firstName, String city, Integer age, ArrayList<String> giftsPreferences, Double averageScore, ArrayList<Double> niceScoreHistory, Double assignedBudget, ArrayList<Gift> receivedGifts) {
+    public Child(final Integer id, final String lastName, final String firstName,
+                 final String city, final Integer age, final ArrayList<String> giftsPreferences,
+                 final Double averageScore, final ArrayList<Double> niceScoreHistory,
+                 final Double assignedBudget, final ArrayList<Gift> receivedGifts) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -41,9 +44,11 @@ public class Child {
         this.receivedGifts = receivedGifts;
     }
 
-    public Child(Child child) {
-        this(child.getId(), child.getLastName(), child.getFirstName(), child.getCity(), child.getAge(),
-                new ArrayList<>(child.getGiftsPreferences()), child.getAverageScore(), new ArrayList<>(child.getNiceScoreHistory()),
+    @SuppressWarnings("CopyConstructorMissesField")
+    public Child(final Child child) {
+        this(child.getId(), child.getLastName(), child.getFirstName(), child.getCity(),
+                child.getAge(), new ArrayList<>(child.getGiftsPreferences()),
+                child.getAverageScore(), new ArrayList<>(child.getNiceScoreHistory()),
                 child.getAssignedBudget(), new ArrayList<>(child.getReceivedGifts()));
     }
 
@@ -55,7 +60,7 @@ public class Child {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -63,7 +68,7 @@ public class Child {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -71,7 +76,7 @@ public class Child {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(final String city) {
         this.city = city;
     }
 
@@ -79,7 +84,7 @@ public class Child {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(final Integer age) {
         this.age = age;
     }
 
@@ -87,7 +92,7 @@ public class Child {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(ArrayList<String> giftsPreferences) {
+    public void setGiftsPreferences(final ArrayList<String> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
 
@@ -95,7 +100,7 @@ public class Child {
         return averageScore;
     }
 
-    public void setAverageScore(Double averageScore) {
+    public void setAverageScore(final Double averageScore) {
         this.averageScore = averageScore;
     }
 
@@ -103,7 +108,7 @@ public class Child {
         return niceScoreHistory;
     }
 
-    public void setNiceScoreHistory(ArrayList<Double> niceScoreHistory) {
+    public void setNiceScoreHistory(final ArrayList<Double> niceScoreHistory) {
         this.niceScoreHistory = niceScoreHistory;
     }
 
@@ -111,7 +116,7 @@ public class Child {
         return assignedBudget;
     }
 
-    public void setAssignedBudget(Double assignedBudget) {
+    public void setAssignedBudget(final Double assignedBudget) {
         this.assignedBudget = assignedBudget;
     }
 
@@ -119,23 +124,8 @@ public class Child {
         return receivedGifts;
     }
 
-    public void setReceivedGifts(ArrayList<Gift> receivedGifts) {
+    public void setReceivedGifts(final ArrayList<Gift> receivedGifts) {
         this.receivedGifts = receivedGifts;
     }
 
-    @Override
-    public String toString() {
-        return "Child{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", city='" + city + '\'' +
-                ", age=" + age +
-                ", giftsPreferences=" + giftsPreferences +
-                ", averageScore=" + averageScore +
-                ", niceScoreHistory=" + niceScoreHistory +
-                ", assignedBudget=" + assignedBudget +
-                ", receivedGifts=" + receivedGifts +
-                '}';
-    }
 }

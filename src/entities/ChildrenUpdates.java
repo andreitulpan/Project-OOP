@@ -2,12 +2,13 @@ package entities;
 
 import java.util.ArrayList;
 
-public class ChildrenUpdates {
+public final class ChildrenUpdates {
     private Integer id;
-    private Double newNiceScore;
-    private ArrayList<String> newGiftsPreferences;
+    private final Double newNiceScore;
+    private final ArrayList<String> newGiftsPreferences;
 
-    public ChildrenUpdates(Integer id, Double newNiceScore, ArrayList<String> newGiftsPreferences) {
+    public ChildrenUpdates(final Integer id, final Double newNiceScore,
+                           final ArrayList<String> newGiftsPreferences) {
         this.id = id;
         this.newNiceScore = newNiceScore;
         this.newGiftsPreferences = newGiftsPreferences;
@@ -17,7 +18,7 @@ public class ChildrenUpdates {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -25,24 +26,8 @@ public class ChildrenUpdates {
         return newNiceScore;
     }
 
-    public void setNewNiceScore(Double newNiceScore) {
-        this.newNiceScore = newNiceScore;
-    }
-
     public ArrayList<String> getNewGiftsPreferences() {
         return newGiftsPreferences;
     }
 
-    public void setNewGiftsPreferences(ArrayList<String> newGiftsPreferences) {
-        this.newGiftsPreferences = newGiftsPreferences;
-    }
-
-    @Override
-    public String toString() {
-        return "ChildrenUpdates{" +
-                "id=" + id +
-                ", newNiceScore=" + newNiceScore +
-                ", newGiftsPreferences=" + newGiftsPreferences +
-                '}';
-    }
 }

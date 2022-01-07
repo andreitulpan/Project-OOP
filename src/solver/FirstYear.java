@@ -6,13 +6,21 @@ import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 
-public class FirstYear implements YearStrategy {
+import static common.Constants.AGE_12;
+import static common.Constants.AGE_18;
+import static common.Constants.AGE_5;
+import static common.Constants.GOOD_CHILD_SCORE;
+
+public final class FirstYear implements YearStrategy {
     private final Solver solver;
 
-    public FirstYear(Solver solver, int year) {
+    public FirstYear(final Solver solver, final int year) {
         this.solver = solver;
     }
 
+    /**
+     * Executa simularea pentru primul an
+     */
     public void solver() {
         ArrayList<Child> childrenToRemove = new ArrayList<>();
         JSONArray childrenArray = new JSONArray();
@@ -21,23 +29,22 @@ public class FirstYear implements YearStrategy {
         double scoreSum = 0;
 
         for (Child child: solver.getChildren()) {
-            // Adaug niceScore-ul in lista
-//            child.getNiceScoreHistory().add(child.getNiceScore());
 
             // Calculez averageScore-ul pentru fiecare copil
-            if (child.getAge() < 5) {
-                child.setAverageScore(10.0);
-            } else if (child.getAge() >= 5 && child.getAge() < 12) {
+            if (child.getAge() < AGE_5) {
+                child.setAverageScore(GOOD_CHILD_SCORE);
+            } else if (child.getAge() < AGE_12) {
                 child.setAverageScore(child.getNiceScoreHistory().get(0));
-            } else if (child.getAge() >= 12 && child.getAge() <= 18) {
+            } else if (child.getAge() >= AGE_12 && child.getAge() <= AGE_18) {
                 child.setAverageScore(child.getNiceScoreHistory().get(0));
             } else {
                 childrenToRemove.add(child);
             }
 
             // Calculez suma scorurilor
-            if (child.getAverageScore() != 0)
+            if (child.getAverageScore() != 0) {
                 scoreSum += child.getAverageScore();
+            }
 
         }
 
@@ -52,11 +59,11 @@ public class FirstYear implements YearStrategy {
         // Calculez bugetul pentru fiecare copil si ii asignez cadourile
         for (Child child: solver.getChildren()) {
             child.setAssignedBudget(child.getAverageScore() * budgetUnit);
-            AssignGifts.Assign(child, solver.getGifts());
-//            outputArray.add(new Child(child));
-            ChildOutput.SetChild(child, childrenArray);
+            AssignGifts.assign(child, solver.getGifts());
+            ChildOutput.setChild(child, childrenArray);
         }
 
-        ChildOutput.SetData(childrenArray, solver.getOutputArray());
+        // Se transmit datele catre output
+        ChildOutput.setData(childrenArray, solver.getOutputArray());
     }
 }

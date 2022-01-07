@@ -1,0 +1,44 @@
+# Copyright 2021 - Tulpan Andrei 324CA
+	Pentru implementarea temei, am folosit o clasa
+denumita Solver in care salvez toate datele primite
+la input apoi execut simularea tot prin intermediul
+acestei clase, utilizand metoda "simulate". Am ales
+sa implementez aceasta clasa utilizand lazy singleton
+pattern pentru o optimizare mai buna.
+	In aceasta clasa denumita solver am salvate
+urmatoarele:
+	- numarul de ani pe care se executa simularea
+	- bugetul mosului pentru anul curent
+	- o lista cu copii
+	- o lista cu cadourile mosului
+	- o lista cu schimbarile anuale
+	- instanta acestei clase (singleton pattern)
+	- un JSONArray pentru output
+	In main se aduce instanta clasei de tip Solver,
+apoi se salveaza datele in aceasta clasa prin intermediul
+clasei "GetInput" si a metodei sale "getData". Ulterior se
+apeleaza metoda "simulate" din clasa Solver care executa
+simularea pe numarul de ani primit ca input si in plus fata
+de acestia se executa si pe primul an (anul 0).
+	Pentru simularea primului an am implementat clasa
+"FirstYear", iar pentru urmatorii ani pe care se va executa
+simularea am implementat clasa "AnotherYear" in care se vor
+face prima oara update-urile, apoi se va executa simularea
+propriu-zisa. Aceste doua clase implementeaza interfata
+"YearStrategy", utilizand astfel pattern-ul Strategy pentru
+alegerea strategiei potrivite in functie de anul in care se
+executa simularea. In plus pentru crearea strategiilor acestea
+am folosit pattern-ul Factory pentru a crea strategia potrivita
+anului respectiv.
+	In implementare se mai gasesc si clasele "AssignGifts" si
+"PerfectGift". Clasa "PerfectGift" intoarce cel mai ieftin cadou
+dintr-o anumita categorie, iar clasa AssignGifts ofera fiecarui
+copil cadourile potrivite in functie de preferintele acestuia si
+de bugetul ramas dupa fiecare cadou primit.
+	La finalul fiecarei simulari pentru fiecare an se salveaza
+o lista cu toti copiii prin intermediul clasei "ChildOutput" si
+a metodei acesteia "setData", care mai tarziu este adaugata in
+JSONArray-ul de output.
+	La final, in clasa Main se apeleaza metoda statica
+"setData" a clasei "SetOutput" prin care se scriu in fisier
+toate datele salvate in JSONArray-ul destinat datelor de iesire.

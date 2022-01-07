@@ -2,13 +2,15 @@ package entities;
 
 import java.util.ArrayList;
 
-public class AnnualChanges {
+public final class AnnualChanges {
     private Double newSantaBudget;
     private ArrayList<Gift> newGifts;
     private ArrayList<Child> newChildren;
     private ArrayList<ChildrenUpdates> childrenUpdates;
 
-    public AnnualChanges(Double newSantaBudget, ArrayList<Gift> newGifts, ArrayList<Child> newChildren, ArrayList<ChildrenUpdates> childrenUpdates) {
+    public AnnualChanges(
+            final Double newSantaBudget, final ArrayList<Gift> newGifts,
+            final ArrayList<Child> newChildren, final ArrayList<ChildrenUpdates> childrenUpdates) {
         this.newSantaBudget = newSantaBudget;
         this.newGifts = newGifts;
         this.newChildren = newChildren;
@@ -19,7 +21,7 @@ public class AnnualChanges {
         return newSantaBudget;
     }
 
-    public void setNewSantaBudget(Double newSantaBudget) {
+    public void setNewSantaBudget(final Double newSantaBudget) {
         this.newSantaBudget = newSantaBudget;
     }
 
@@ -27,7 +29,7 @@ public class AnnualChanges {
         return newGifts;
     }
 
-    public void setNewGifts(ArrayList<Gift> newGifts) {
+    public void setNewGifts(final ArrayList<Gift> newGifts) {
         this.newGifts = newGifts;
     }
 
@@ -35,7 +37,7 @@ public class AnnualChanges {
         return newChildren;
     }
 
-    public void setNewChildren(ArrayList<Child> newChildren) {
+    public void setNewChildren(final ArrayList<Child> newChildren) {
         this.newChildren = newChildren;
     }
 
@@ -43,17 +45,8 @@ public class AnnualChanges {
         return childrenUpdates;
     }
 
-    public void setChildrenUpdates(ArrayList<ChildrenUpdates> childrenUpdates) {
+    public void setChildrenUpdates(final ArrayList<ChildrenUpdates> childrenUpdates) {
         this.childrenUpdates = childrenUpdates;
     }
 
-    @Override
-    public String toString() {
-        return "AnnualChanges{" +
-                "newSantaBudget=" + newSantaBudget +
-                ", newGifts=" + newGifts +
-                ", newChildren=" + newChildren +
-                ", childrenUpdates=" + childrenUpdates +
-                '}';
-    }
 }

@@ -1,7 +1,8 @@
 package solver;
 
-import org.json.simple.JSONArray;
-
 public interface YearStrategy {
+    /**
+     * Executa simularea
+     */
     void solver();
 }

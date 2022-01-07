@@ -1,11 +1,11 @@
 package entities;
 
-public class Gift {
+public final class Gift {
     private String productName;
     private Double price;
     private String category;
 
-    public Gift(String productName, Double price, String category) {
+    public Gift(final String productName, final Double price, final String category) {
         this.productName = productName;
         this.price = price;
         this.category = category;
@@ -15,7 +15,7 @@ public class Gift {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(final String productName) {
         this.productName = productName;
     }
 
@@ -23,7 +23,7 @@ public class Gift {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(final Double price) {
         this.price = price;
     }
 
@@ -31,16 +31,8 @@ public class Gift {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(final String category) {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "Gift{" +
-                "productName='" + productName + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                '}';
-    }
 }
