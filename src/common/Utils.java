@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static common.Constants.AGE_18;
+import static common.Constants.BLACK;
+import static common.Constants.ONE_HUNDRED;
+import static common.Constants.PERCENT_30;
+import static common.Constants.PINK;
 
 public final class Utils {
 
@@ -69,7 +73,7 @@ public final class Utils {
                                     final Child children,
                                     final String cityName) {
 
-        City city = solver.findCity(cityName);
+        City city = findCity(solver, cityName);
         if (city != null) {
             city.getChild().add(children);
         } else {
@@ -160,6 +164,66 @@ public final class Utils {
         // Se updateaza bugetul mosului
         solver.setSantaBudget(
                 solver.getAnnualChanges().get(year).getNewSantaBudget());
+    }
+
+    /**
+     * Se incrementeaza varsta copiiilor cu 1
+     *
+     * @param solver solver-ul
+     */
+    public static void childGrowsUp(final Solver solver) {
+        for (Child child: solver.getChildren()) {
+            child.setAge(child.getAge() + 1);
+        }
+    }
+
+    /**
+     * Cauta orasul in lista de orase a solver-ului
+     *
+     * @param name numele orasului cautat
+     * @return orasul cautat daca s-a gasit sau null
+     */
+    public static City findCity(final Solver solver, final String name) {
+        for (City city: solver.getCities()) {
+            if (city.getName().equals(name)) {
+                return city;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Calculeaza budgetUnit-ul
+     *
+     * @return budgetUnit-ul
+     */
+    public static double calculateBudgetUnit(final Solver solver) {
+        double scoreSum = 0;
+
+        for (Child childrenObj: solver.getChildren()) {
+            scoreSum += childrenObj.getAverageScore();
+        }
+
+        return solver.getSantaBudget() / scoreSum;
+    }
+
+    /**
+     * Calculeaza bugetul pentru fiecare copil
+     */
+    public static void calculateChildBudget(final Solver solver) {
+        double budgetUnit = calculateBudgetUnit(solver);
+
+        for (Child child: solver.getChildren()) {
+            double budget = child.getAverageScore() * budgetUnit;
+
+            if (child.getElf().equals(BLACK)) {
+                budget -= budget * PERCENT_30 / ONE_HUNDRED;
+            } else if (child.getElf().equals(PINK)) {
+                budget += budget * PERCENT_30 / ONE_HUNDRED;
+            }
+
+            child.setAssignedBudget(budget);
+        }
     }
 
     /**

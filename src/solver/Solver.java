@@ -9,11 +9,6 @@ import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 
-import static common.Constants.BLACK;
-import static common.Constants.ONE_HUNDRED;
-import static common.Constants.PERCENT_30;
-import static common.Constants.PINK;
-
 public final class Solver {
     private Integer numberOfYears;
     private Double santaBudget;
@@ -66,71 +61,19 @@ public final class Solver {
     }
 
     /**
-     * Cauta orasul in lista de orase a solver-ului
-     *
-     * @param name numele orasului cautat
-     * @return orasul cautat daca s-a gasit sau null
-     */
-    public City findCity(final String name) {
-        for (City city: cities) {
-            if (city.getName().equals(name)) {
-                return city;
-            }
-        }
-        return null;
-    }
-
-    /**
      * Realizeaza schimbarile anuale
      *
      * @param year anul pentru care se fac schimbarile
      */
     public void newYear(final Integer year) {
 
-        // Se incrementeaza varsta cu 1
-        for (Child child: this.getChildren()) {
-            child.setAge(child.getAge() + 1);
-        }
+        Utils.childGrowsUp(this);
 
         Utils.updateChildList(this, year);
 
         Utils.updateChild(this, year);
 
         Utils.updateGiftsAndBudget(this, year);
-    }
-
-    /**
-     * Calculeaza budgetUnit-ul
-     *
-     * @return budgetUnit-ul
-     */
-    public double calculateBudgetUnit() {
-        double scoreSum = 0;
-
-        for (Child childrenObj: this.getChildren()) {
-            scoreSum += childrenObj.getAverageScore();
-        }
-
-        return this.getSantaBudget() / scoreSum;
-    }
-
-    /**
-     * Calculeaza bugetul pentru fiecare copil
-     */
-    public void calculateChildBudget() {
-        double budgetUnit = calculateBudgetUnit();
-
-        for (Child child: this.getChildren()) {
-            double budget = child.getAverageScore() * budgetUnit;
-
-            if (child.getElf().equals(BLACK)) {
-                budget -= budget * PERCENT_30 / ONE_HUNDRED;
-            } else if (child.getElf().equals(PINK)) {
-                budget += budget * PERCENT_30 / ONE_HUNDRED;
-            }
-
-            child.setAssignedBudget(budget);
-        }
     }
 
     public Integer getNumberOfYears() {

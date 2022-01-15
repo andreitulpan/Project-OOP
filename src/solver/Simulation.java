@@ -2,6 +2,7 @@ package solver;
 
 import average.AverageFactory;
 import average.AverageStrategy;
+import common.Utils;
 import entities.AnnualChanges;
 import entities.Child;
 import fileio.SetOutput;
@@ -42,7 +43,7 @@ public final class Simulation {
         solver.getChildren().removeAll(childrenToRemove);
 
         // Se calculeaza bugetul pentru fiecare copil
-        solver.calculateChildBudget();
+        Utils.calculateChildBudget(solver);
 
         // Se asigneaza cadourile fiecarui copil
         AssignGiftsFactory assignGiftsFactory = new AssignGiftsFactory();
