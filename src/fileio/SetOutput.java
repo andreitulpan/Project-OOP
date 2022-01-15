@@ -3,6 +3,8 @@ package fileio;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import entities.Child;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import solver.Solver;
 
@@ -33,5 +35,23 @@ public final class SetOutput {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Scrie toti copiii din lista
+     * in vectorul de output
+     *
+     * @param solver solver-ul
+     */
+    @SuppressWarnings("unchecked")
+    public static void setChildList(final Solver solver) {
+        JSONArray childrenArray = new JSONArray();
+        for (Child children: solver.getChildren()) {
+            childrenArray.add(new Child(children));
+        }
+
+        JSONObject childrenObj = new JSONObject();
+        childrenObj.put("children", childrenArray);
+        solver.getOutputArray().add(childrenObj);
     }
 }

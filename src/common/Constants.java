@@ -4,11 +4,9 @@ public final class Constants {
     public static final String INPUT_PATH = "tests/test";
     public static final String OUTPUT_PATH = "output/out_";
     public static final String OUTPUT_DIR = "output";
-    public static final String REF_PATH = "ref/ref_test";
     public static final String FILE_EXTENSION = ".json";
-    public static final Integer SMALL_TEST_POINTS = 2;
     public static final Integer BIG_TEST_POINTS = 3;
-    public static final Integer TESTS_NUMBER = 25;
+    public static final Integer TESTS_NUMBER = 30;
     public static final Integer MAXIMUM_ERROR_CHECKSTYLE = 30;
     public static final Integer CHECKSTYLE_POINTS = 10;
     public static final String NUMBER_OF_YEARS = "numberOfYears";
@@ -22,6 +20,7 @@ public final class Constants {
     public static final String CITY = "city";
     public static final String AGE = "age";
     public static final String NICE_SCORE = "niceScore";
+    public static final String NICE_SCORE_CITY = "niceScoreCity";
     public static final String SANTA_GIFTS_LIST = "santaGiftsList";
     public static final String PRODUCT_NAME = "productName";
     public static final String PRICE = "price";
@@ -31,13 +30,24 @@ public final class Constants {
     public static final String NEW_CHILDREN = "newChildren";
     public static final String CHILDREN_UPDATES = "childrenUpdates";
     public static final String NEW_SANTA_BUDGET = "newSantaBudget";
-    public static final Integer TESTS_NUMBER_SMALL = 15;
+    public static final String QUANTITY = "quantity";
+    public static final String NICE_SCORE_BONUS = "niceScoreBonus";
+    public static final String ELF = "elf";
+    public static final String BLACK = "black";
+    public static final String PINK = "pink";
+    public static final String YELLOW = "yellow";
+    public static final String STRATEGY = "strategy";
+    public static final String NONE = "none";
+    public static final String NORMAL = "normal";
+    public static final String CHEAP = "cheap";
+    public static final Integer TEN = 10;
+    public static final Integer ONE_HUNDRED = 100;
     public static final Integer FIRST_TEST = 1;
-    public static final Integer LAST_TEST = 25;
     public static final Integer AGE_18 = 18;
     public static final Integer AGE_5 = 5;
     public static final Integer AGE_12 = 12;
     public static final Double GOOD_CHILD_SCORE = 10.0;
+    public static final Integer PERCENT_30 = 30;
 
     private Constants() {
         //constructor for checkstyle

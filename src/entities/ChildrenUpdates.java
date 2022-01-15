@@ -6,12 +6,15 @@ public final class ChildrenUpdates {
     private Integer id;
     private final Double newNiceScore;
     private final ArrayList<String> newGiftsPreferences;
+    private final String newElf;
 
     public ChildrenUpdates(final Integer id, final Double newNiceScore,
-                           final ArrayList<String> newGiftsPreferences) {
+                           final ArrayList<String> newGiftsPreferences,
+                           final String newElf) {
         this.id = id;
         this.newNiceScore = newNiceScore;
         this.newGiftsPreferences = newGiftsPreferences;
+        this.newElf = newElf;
     }
 
     public Integer getId() {
@@ -30,4 +33,7 @@ public final class ChildrenUpdates {
         return newGiftsPreferences;
     }
 
+    public String getNewElf() {
+        return newElf;
+    }
 }

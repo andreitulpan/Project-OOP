@@ -12,9 +12,9 @@ import java.nio.file.Path;
 import static common.Constants.FILE_EXTENSION;
 import static common.Constants.FIRST_TEST;
 import static common.Constants.INPUT_PATH;
-import static common.Constants.LAST_TEST;
 import static common.Constants.OUTPUT_DIR;
 import static common.Constants.OUTPUT_PATH;
+import static common.Constants.TESTS_NUMBER;
 
 /**
  * Class used to run the code
@@ -39,7 +39,7 @@ public final class Main {
         }
 
         // Parcurg fiecare test si execut simularea pe el
-        for (int testNumber = FIRST_TEST; testNumber <= LAST_TEST; testNumber++) {
+        for (int testNumber = FIRST_TEST; testNumber <= TESTS_NUMBER; testNumber++) {
             // Primeste instanta pentru Solver
             Solver solver = Solver.getInstance();
 

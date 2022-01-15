@@ -22,7 +22,7 @@ public enum Category {
     @JsonProperty("Toys")
     TOYS("Toys");
 
-    private final String value;
+    private String value;
 
     Category(final String value) {
         this.value = value;
